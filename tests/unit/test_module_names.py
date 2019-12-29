@@ -51,6 +51,7 @@ EXCLUDED_FILES = [
     os.path.join('tests', 'unit', 'transport', 'mixins.py'),
     os.path.join('tests', 'integration', 'utils', 'testprogram.py'),
     os.path.join('tests', 'unit', 'test_pytest.py'),
+    os.path.join('tests', 'unit', 'utils', 'scheduler', 'base.py'),
 ]
 
 
@@ -209,6 +210,8 @@ class BadTestModuleNamesTestCase(TestCase):
         for mod_name in list_test_mods():
             if mod_name in ignore:
                 # Test module is being ignored, skip it
+                continue
+            if mod_name.startswith('unit.utils.scheduler'):
                 continue
 
             # Separate the test_foo away from the rest of the mod name, because
